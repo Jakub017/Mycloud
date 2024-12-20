@@ -790,33 +790,6 @@ const logout = () => {
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="mt-auto">
-                                    <a
-                                        href="#"
-                                        class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
-                                    >
-                                        <svg
-                                            class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke-width="1.5"
-                                            stroke="currentColor"
-                                            aria-hidden="true"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"
-                                            />
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                            />
-                                        </svg>
-                                        Ustawienia
-                                    </a>
-                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -841,7 +814,7 @@ const logout = () => {
                 </div>
                 <nav class="flex flex-1 flex-col">
                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
-                        <li>
+                        <li class="px-2">
                             <div
                                 class="text-xs font-semibold leading-6 text-gray-400"
                             >
@@ -849,9 +822,8 @@ const logout = () => {
                             </div>
                             <ul role="list" class="-mx-2 space-y-1">
                                 <li>
-                                    <!-- Current: "bg-gray-50 text-indigo-600", Default: "text-gray-700 hover:text-indigo-600 hover:bg-gray-50" -->
-                                    <a
-                                        href="#"
+                                    <Link
+                                        :href="route('dashboard')"
                                         class="bg-gray-50 text-indigo-600 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                                     >
                                         <div
@@ -863,38 +835,26 @@ const logout = () => {
                                         </div>
 
                                         Pulpit
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a
-                                        href="#"
+                                    <Link
+                                        :href="route('drive.index')"
                                         class="text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                                     >
-                                        <!-- <svg
-                                            class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
-                                            version="1.1"
-                                            viewBox="0 0 512 512"
-                                            xml:space="preserve"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                                        >
-                                            <path
-                                                d="M341.8,50.9c113.3,47.7,166.5,178.3,118.7,291.6S282.2,508.9,168.9,461.2S2.5,282.9,50.3,169.6  C85,87.1,165.9,33.4,255.4,33.4C285.1,33.4,314.5,39.3,341.8,50.9z M63.4,255.4c0,106,86,192,192,192s192-86,192-192  s-86-192-192-192S63.4,149.4,63.4,255.4z M370.7,227.4L255.4,112.1L140.1,227.4l21.2,21.2l79.1-79.2v208.2h30V169.4l79.1,79.1  L370.7,227.4z"
-                                            />
-                                        </svg> -->
                                         <div
                                             class="w-5 flex justify-center items-center"
                                         >
                                             <i
-                                                class="fa-solid fa-upload text-base text-gray-400 group-hover:text-indigo-600"
+                                                class="fa-solid fa-hard-drive text-base text-gray-400 group-hover:text-indigo-600"
                                             ></i>
                                         </div>
-                                        Wgraj pliki
-                                    </a>
+                                        Mój dysk
+                                    </Link>
                                 </li>
                             </ul>
                         </li>
-                        <li>
+                        <li class="px-2">
                             <div
                                 class="text-xs font-semibold leading-6 text-gray-400"
                             >
@@ -964,34 +924,47 @@ const logout = () => {
                                         Filmy
                                     </a>
                                 </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        class="text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                                    >
+                                        <div
+                                            class="w-5 flex justify-center items-center"
+                                        >
+                                            <i
+                                                class="fa-solid fa-trash text-base text-gray-400 group-hover:text-indigo-600"
+                                            ></i>
+                                        </div>
+                                        Kosz
+                                    </a>
+                                </li>
                             </ul>
                         </li>
-                        <li class="mt-auto">
-                            <a
-                                href="#"
-                                class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
+                        <li>
+                            <div
+                                class="w-full bg-gray-50 rounded-md p-3 flex flex-col gap-2"
                             >
-                                <svg
-                                    class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke-width="1.5"
-                                    stroke="currentColor"
-                                    aria-hidden="true"
+                                <h2
+                                    class="text-base font-semibold text-gray-600"
                                 >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"
-                                    />
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                    />
-                                </svg>
-                                Ustawienia
-                            </a>
+                                    Miejsce na dysku
+                                </h2>
+
+                                <div
+                                    class="w-full bg-gray-200 rounded-full h-2.5"
+                                >
+                                    <div
+                                        class="bg-indigo-600 h-2.5 rounded-full"
+                                        style="width: 45%"
+                                    ></div>
+                                </div>
+                                <p class="text-sm text-gray-500">
+                                    Wykorzystano
+                                    <span class="font-semibold">22.5GB</span> z
+                                    <span class="font-semibold">50GB</span>
+                                </p>
+                            </div>
                         </li>
                     </ul>
                 </nav>
@@ -1031,7 +1004,7 @@ const logout = () => {
 
                 <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
                     <form class="relative flex flex-1" action="#" method="GET">
-                        <label for="search-field" class="sr-only">Search</label>
+                        <label for="search-field" class="sr-only">Szukaj</label>
                         <svg
                             class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
                             viewBox="0 0 20 20"
@@ -1047,7 +1020,7 @@ const logout = () => {
                         <input
                             id="search-field"
                             class="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
-                            placeholder="Search..."
+                            placeholder="Szukaj..."
                             type="search"
                             name="search"
                         />
@@ -1141,7 +1114,7 @@ const logout = () => {
                                     role="menuitem"
                                     tabindex="-1"
                                     id="user-menu-item-0"
-                                    >Your profile</a
+                                    >Mój profil</a
                                 >
                                 <a
                                     href="#"
@@ -1149,7 +1122,7 @@ const logout = () => {
                                     role="menuitem"
                                     tabindex="-1"
                                     id="user-menu-item-1"
-                                    >Sign out</a
+                                    >Wyloguj się</a
                                 >
                             </div>
                         </div>
