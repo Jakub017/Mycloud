@@ -10,9 +10,29 @@ const form = useForm({
 
 const handleFileUpload = (event) => {
     form.file = event.target.files[0];
+
+    if (form.file) {
+        store();
+    }
 };
 
-const store = () => form.post(route("upload.store"));
+const store = () => form.post(route("drive.store"));
+
+const formatFileSize = (size) => {
+    const calculatedSize = size / 1000 / 1000;
+
+    if (calculatedSize > 1000) {
+        return (calculatedSize / 1000).toFixed(2) + " GB";
+    } else if (calculatedSize >= 1) {
+        return calculatedSize.toFixed(2) + " MB";
+    } else {
+        return (calculatedSize * 1000).toFixed(2) + " KB";
+    }
+};
+
+const formatDate = (date) => {
+    return new Date(date).toLocaleDateString("pl-PL");
+};
 </script>
 
 <script>
@@ -28,6 +48,7 @@ export default {
         <div class="flex flex-col gap-3">
             <h1 class="text-3xl font-bold">Mój dysk</h1>
             <form
+                id="uploadForm"
                 class="w-full"
                 enctype="multipart/form-data"
                 @submit.prevent="store"
@@ -105,7 +126,7 @@ export default {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <!-- <tr>
                                     <td
                                         class="relative py-4 pr-3 text-sm font-medium text-gray-900"
                                     >
@@ -460,7 +481,7 @@ export default {
                                             ></a
                                         >
                                     </td>
-                                </tr>
+                                </tr> -->
 
                                 <tr v-for="upload in uploads" :key="upload.id">
                                     <td
@@ -471,7 +492,15 @@ export default {
                                                 class="w-5 flex justify-center items-center"
                                             >
                                                 <i
-                                                    class="fa-solid fa-music text-base text-orange-600"
+                                                    class="fa-solid text-base"
+                                                    :class="{
+                                                        'fa-file-pdf text-red-600':
+                                                            upload.file_type ==
+                                                            'application/pdf',
+                                                        'fa-file text-blue-600':
+                                                            upload.file_type ==
+                                                            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                                                    }"
                                                 ></i>
                                             </div>
                                             {{ upload.file_name }}
@@ -487,17 +516,18 @@ export default {
                                     <td
                                         class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell"
                                     >
-                                        20 gru 2024
+                                        {{ formatDate(upload.created_at) }}
                                     </td>
 
                                     <td class="px-3 py-4 text-sm text-gray-500">
-                                        {{ upload.file_size }}
+                                        {{ formatFileSize(upload.file_size) }}
                                     </td>
                                     <td
                                         class="relative py-4 pl-3 text-right text-sm font-medium"
                                     >
                                         <a
-                                            href="#"
+                                            download
+                                            href="{{ Storage::url($upload->file_path) }}"
                                             class="text-indigo-600 hover:text-indigo-900 mr-3"
                                             >Pobierz<span class="sr-only"
                                                 >, Lindsay Walton</span
