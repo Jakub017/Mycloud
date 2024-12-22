@@ -22,11 +22,11 @@ const formatFileSize = (size) => {
     const calculatedSize = size / 1000 / 1000;
 
     if (calculatedSize > 1000) {
-        return (calculatedSize / 1000).toFixed(2) + " GB";
+        return (calculatedSize / 1000).toFixed(1) + " GB";
     } else if (calculatedSize >= 1) {
-        return calculatedSize.toFixed(2) + " MB";
+        return calculatedSize.toFixed(1) + " MB";
     } else {
-        return (calculatedSize * 1000).toFixed(2) + " KB";
+        return (calculatedSize * 1000).toFixed(0) + " KB";
     }
 };
 
@@ -126,7 +126,8 @@ export default {
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- <tr>
+                                <!--
+                                <tr>
                                     <td
                                         class="relative py-4 pr-3 text-sm font-medium text-gray-900"
                                     >
@@ -481,9 +482,14 @@ export default {
                                             ></a
                                         >
                                     </td>
-                                </tr> -->
+                                </tr>
+                                -->
 
-                                <tr v-for="upload in uploads" :key="upload.id">
+                                <tr
+                                    v-for="upload in uploads"
+                                    :key="upload.id"
+                                    class="hover:bg-gray-50"
+                                >
                                     <td
                                         class="relative py-4 pr-3 text-sm font-medium text-gray-900"
                                     >
@@ -495,11 +501,43 @@ export default {
                                                     class="fa-solid text-base"
                                                     :class="{
                                                         'fa-file-pdf text-red-600':
-                                                            upload.file_type ==
+                                                            upload.file_type ===
                                                             'application/pdf',
                                                         'fa-file text-blue-600':
-                                                            upload.file_type ==
-                                                            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                                                            [
+                                                                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                                                                'application/msword',
+                                                            ].includes(
+                                                                upload.file_type
+                                                            ),
+                                                        'fa-sheet-plastic text-green-600':
+                                                            [
+                                                                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                                                                'application/vnd.ms-excel',
+                                                            ].includes(
+                                                                upload.file_type
+                                                            ),
+                                                        'fa-image text-purple-600':
+                                                            [
+                                                                'image/jpeg',
+                                                                'image/png',
+                                                                'image/jpg',
+                                                            ].includes(
+                                                                upload.file_type
+                                                            ),
+                                                        'fa-file-video text-pink-600':
+                                                            upload.file_type ===
+                                                            'video/mp4',
+                                                        'fa-file-audio text-orange-600':
+                                                            upload.file_type ===
+                                                            'audio/mpeg',
+                                                        'fa-file-zipper text-yellow-600':
+                                                            [
+                                                                'application/zip',
+                                                                'application/x-rar-compressed',
+                                                            ].includes(
+                                                                upload.file_type
+                                                            ),
                                                     }"
                                                 ></i>
                                             </div>

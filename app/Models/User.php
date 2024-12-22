@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Role;
 use App\Models\Upload;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
@@ -33,6 +34,7 @@ class User extends Authenticatable
         'surname',
         'email',
         'password',
+        'role_id',
     ];
 
     /**
@@ -71,5 +73,17 @@ class User extends Authenticatable
 
     public function uploads() {
         return $this->hasMany(Upload::class);
+    }
+
+    public function role() {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function storageLimit() {
+        return $this->role->storage_limit;
+    }
+
+    public function usedStorage() {
+        return $this->uploads()->sum('file_size');
     }
 }

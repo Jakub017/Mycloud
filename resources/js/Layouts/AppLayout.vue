@@ -952,17 +952,30 @@ const logout = () => {
                                 </h2>
 
                                 <div
-                                    class="w-full bg-gray-200 rounded-full h-2.5"
+                                    class="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden"
                                 >
                                     <div
                                         class="bg-indigo-600 h-2.5 rounded-full"
-                                        style="width: 45%"
+                                        :style="{
+                                            width: calculatePercent(
+                                                usedStorage,
+                                                storageLimit
+                                            ),
+                                        }"
                                     ></div>
                                 </div>
                                 <p class="text-sm text-gray-500">
                                     Wykorzystano
-                                    <span class="font-semibold">22.5GB</span> z
-                                    <span class="font-semibold">50GB</span>
+                                    <span class="font-semibold"
+                                        >{{ calculateUsed(usedStorage) }} GB
+                                    </span>
+                                    z
+                                    <span class="font-semibold"
+                                        >{{
+                                            calculateLimit(storageLimit)
+                                        }}
+                                        GB</span
+                                    >
                                 </p>
                             </div>
                         </li>
@@ -1143,5 +1156,20 @@ const logout = () => {
 import { Link } from "@inertiajs/vue3";
 const props = defineProps({
     user: Object,
+    storageLimit: Number,
+    usedStorage: Number,
+    freeStorage: Number,
 });
+
+const calculateLimit = (limit) => {
+    return limit / 1024 ** 3;
+};
+
+const calculateUsed = (used) => {
+    return (used / 1024 ** 3).toFixed(2);
+};
+
+const calculatePercent = (used, limit) => {
+    return (used / limit) * 100 + "%";
+};
 </script>
