@@ -824,13 +824,23 @@ const logout = () => {
                                 <li>
                                     <Link
                                         :href="route('dashboard')"
-                                        class="bg-gray-50 text-indigo-600 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                                        class="text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                                        :class="{
+                                            'bg-indigo-600 text-white hover:bg-indigo-600 hover:text-white':
+                                                route().current('dashboard'),
+                                        }"
                                     >
                                         <div
                                             class="w-5 flex justify-center items-center"
                                         >
                                             <i
                                                 class="fa-solid fa-house text-base text-gray-400 group-hover:text-indigo-600"
+                                                :class="{
+                                                    'text-white group-hover:text-white':
+                                                        route().current(
+                                                            'dashboard'
+                                                        ),
+                                                }"
                                             ></i>
                                         </div>
 
@@ -841,12 +851,22 @@ const logout = () => {
                                     <Link
                                         :href="route('drive.index')"
                                         class="text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                                        :class="{
+                                            'bg-indigo-600 text-white hover:bg-indigo-600 hover:text-white':
+                                                route().current('drive.*'),
+                                        }"
                                     >
                                         <div
                                             class="w-5 flex justify-center items-center"
                                         >
                                             <i
                                                 class="fa-solid fa-hard-drive text-base text-gray-400 group-hover:text-indigo-600"
+                                                :class="{
+                                                    'text-white group-hover:text-white':
+                                                        route().current(
+                                                            'drive.*'
+                                                        ),
+                                                }"
                                             ></i>
                                         </div>
                                         Mój dysk
@@ -945,9 +965,7 @@ const logout = () => {
                             <div
                                 class="w-full bg-gray-50 rounded-md p-3 flex flex-col gap-2"
                             >
-                                <h2
-                                    class="text-base font-semibold text-gray-600"
-                                >
+                                <h2 class="text-sm font-bold text-gray-600">
                                     Miejsce na dysku
                                 </h2>
 
@@ -966,17 +984,22 @@ const logout = () => {
                                 </div>
                                 <p class="text-sm text-gray-500">
                                     Wykorzystano
-                                    <span class="font-semibold"
+                                    <span class="text-sm font-medium"
                                         >{{ calculateUsed(usedStorage) }} GB
                                     </span>
                                     z
-                                    <span class="font-semibold"
+                                    <span class="text-sm font-medium"
                                         >{{
                                             calculateLimit(storageLimit)
                                         }}
                                         GB</span
                                     >
                                 </p>
+                                <Link
+                                    :href="route('pricing')"
+                                    class="text-sm text-indigo-600 hover:text-indigo-500"
+                                    >Zmień pakiet</Link
+                                >
                             </div>
                         </li>
                     </ul>
@@ -986,7 +1009,7 @@ const logout = () => {
 
         <div class="lg:pl-72">
             <div
-                class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8"
+                class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 sm:gap-x-6 sm:px-6 lg:px-8"
             >
                 <button
                     type="button"

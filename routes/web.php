@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function() {
     Route::controller(AppController::class)->group(function() {
         Route::get('/pulpit', 'dashboard')->name('dashboard');
+        Route::get('/plany-cenowe', 'pricing')->name('pricing');
     });
 
     Route::controller(DriveController::class)->group(function() {

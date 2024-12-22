@@ -23,4 +23,8 @@ class AppController extends Controller
     ]);
     }
 
+    public function pricing() {
+        return Inertia('Pricing');
+    }
+
 }
